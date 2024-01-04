@@ -62,6 +62,11 @@ from t_customer tc
 right join t_region tr
 on tc.region_code=tr.region_code;
 
+select  tc.id, tc.customer_name, tr.region_name
+from t_region tr
+left join t_customer tc
+on tc.region_code=tr.region_code;
+
 
 
 
