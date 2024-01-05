@@ -89,3 +89,31 @@ ENGINE = InnoDB;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+
+INSERT INTO department (department_name) VALUES
+('컴퓨터공학과'),
+('국어국문학과'),
+('정보통신과'),
+('전자공학과');
+
+-- 학생-- Insert data into Student table
+ INSERT INTO Student (student_name, student_height, department_code) VALUES
+ ('가길동', 170.5, 1),
+ ('나길동', 165.2, 1),
+ ('다길동', 180.0, 2),
+ ('라길동', 175.8, 3),
+ ('마길동', 160.7, 4),
+ ('바길동', 168.3, 1),
+ ('사길동', 172.1, 2),
+ ('아길동', 175.0, 1);
+ 
+ 
+
+
+
+
+
+
+
+ 
