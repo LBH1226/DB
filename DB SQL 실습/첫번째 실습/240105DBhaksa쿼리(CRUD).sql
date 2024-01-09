@@ -197,4 +197,118 @@ select max(id) from student_course;
 select ifnull(max(id),0)+1 num from student_course;
 
 select *from student_course;
+select *from department;
+select *from course;
+select*from student_course;
+select*from professor;
+
+-- 과목별 수강자 수를 출력하세요(과목이름,수강자수)
+select c.course_name, count(sc.student_id) cnt
+from course c
+left join student_course sc
+on c.course_code=sc.course_code
+group by c.course_name;
+-- having cnt>=2
+-- order by c.course_name asc
+
+-- 서브쿼리
+-- 빌게이츠 교수의 과목을 수강신청한 학생수출력
+select s.student_name
+from student s
+where s.student_id IN (
+select sc.student_id
+from student_course sc
+where sc.course_code=(
+select c.course_code
+from course c
+where c.professor_code=(
+select p.professor_code
+from professor p
+where p.professor_name='빌 게이츠'
+)
+)
+);
+
+-- in에 있는값만 나옴
+select s.student_name
+from student s
+where s.student_id IN (5,3,1);
+
+-- 스티브 잡스 교수의/ 과목을/ 수강신청한 학생을/ 출력하세요
+
+
+select d.department_name, A.student_name
+from department d
+-- inner join (?) as A
+inner join
+(select s.student_name, s.department_code
+from student s
+where s.student_id IN (
+select sc.student_id
+from student_course sc
+where sc.course_code=(
+select c.course_code
+from course c
+where c.professor_code=(
+select p.professor_code
+from professor p
+where p.professor_name='스티브 잡스'
+)
+)
+) 
+) A
+on A.department_code=d.department_code;
+
+
+select *from student;
+select *from department;
+select *from course;
+select*from student_course;
+select*from professor;
+
+
+
+-- 사길동 학생과 같은 과목을 수강신청한 학생이름을 출력하세요
+
+select student_name
+from student s
+inner join (
+select sc.student_id
+from student_course sc
+where sc.course_code=(
+select sc.course_code
+from student_course sc
+where sc.student_id =( 
+select student_id
+from student s
+where s.student_name='사길동'
+)
+)
+) A
+ON s.student_id=A.student_id;
+
+
+
+select student_name
+from student s
+where s.student_id IN (
+select sc.student_id
+from student_course sc
+where sc.course_code=(
+select sc.course_code
+from student_course sc
+where sc.student_id =( 
+select student_id
+from student s
+where s.student_name='사길동'
+)
+)
+) ;
+
+
+
+
+
+
+
 
